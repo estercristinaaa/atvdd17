@@ -1,101 +1,163 @@
 let participantes = [
-  {
-    nome: "Ester Cristina",
-    email: "tete@gmail.com",
-    dataInscricao: new Date(2024, 2, 22, 19, 20),
-    dataCheckin: new Date(2024, 2, 25, 22, 0)
-  },
-  {
-    nome: "Lucas Oliveira",
-    email: "lucas@gmail.com",
-    dataInscricao: new Date(2022, 5, 20, 14, 30),
-    dataCheckin: new Date(2024, 2, 25, 21, 45)
-  },
-  {
-    nome: "Marina Costa",
-    email: "marina@gmail.com",
-    dataInscricao: new Date(2025, 2, 21, 10, 0),
-    dataCheckin: new Date(2024, 2, 25, 20, 30)
-  },
-  {
-    nome: "Pedro Almeida",
-    email: "pedro@gmail.com",
-    dataInscricao: new Date(2023, 2, 18, 16, 15),
-    dataCheckin: new Date(2024, 2, 25, 22, 10)
-  },
-  {
-    nome: "Ana Paula",
-    email: "ana@gmail.com",
-    dataInscricao: new Date(2024, 2, 19, 9, 45),
-    dataCheckin: new Date(2024, 2, 25, 21, 0)
-  },
-  {
-    nome: "Rafael Souza",
-    email: "rafael@gmail.com",
-    dataInscricao: new Date(2024, 2, 23, 13, 20),
-    dataCheckin: new Date(2024, 2, 25, 22, 30)
-  },
-  {
-    nome: "Beatriz Lima",
-    email: "beatriz@gmail.com",
-    dataInscricao: new Date(2024, 2, 20, 11, 50),
-    dataCheckin: new Date(2024, 2, 25, 20, 55)
-  },
-  {
-    nome: "Carlos Menezes",
-    email: "carlos@gmail.com",
-    dataInscricao: new Date(2024, 2, 22, 15, 0),
-    dataCheckin: new Date(2024, 2, 25, 21, 35)
-  },
-  {
-    nome: "Juliana Ribeiro",
-    email: "juliana@gmail.com",
-    dataInscricao: new Date(2024, 2, 21, 17, 40),
-    dataCheckin: new Date(2024, 2, 25, 22, 5)
-  },
-  {
-    nome: "Felipe Martins",
-    email: "felipe@gmail.com",
-    dataInscricao: new Date(2024, 2, 19, 12, 25),
-    dataCheckin: new Date(2024, 2, 25, 21, 15)
-  }
+     {
+        nome: "Diego Fernandes",
+        email: "diego@gmail.com",
+        dataInscricao: new Date(2024, 2, 1, 19, 23),
+        dataCheckIn: new Date(2024, 2, 1, 20, 20)
+      },
+      {
+        nome: "Mayk Brito",
+        email: "mayk@gmail.com",
+        dataInscricao: new Date(2024, 2, 23, 19, 23),
+        dataCheckIn: null
+      },
+      {
+        nome: "Ana Souza",
+        email: "ana@gmail.com",
+        dataInscricao: new Date(2024, 0, 3, 19, 23),
+        dataCheckIn: new Date(2024, 0, 4, 20, 20)
+      },
+      {
+        nome: "João Silva",
+        email: "joao@gmail.com",
+        dataInscricao: new Date(2023, 11, 4, 19, 23),
+        dataCheckIn: new Date(2023, 11, 5, 20, 20)
+      },
+      {
+        nome: "Maria Oliveira",
+        email: "maria@gmail.com",
+        dataInscricao: new Date(2023, 10, 5, 19, 23),
+        dataCheckIn: null
+      },
+      {
+        nome: "Pedro Santos",
+        email: "pedro@gmail.com",
+        dataInscricao: new Date(2023, 9, 6, 19, 23),
+        dataCheckIn: new Date(2023, 9, 7, 20, 20)
+      },
+      {
+        nome: "Carla Lima",
+        email: "carla@gmail.com",
+        dataInscricao: new Date(2023, 8, 7, 19, 23),
+        dataCheckIn: new Date(2023, 8, 8, 20, 20)
+      },
+      {
+        nome: "Lucas Sousa",
+        email: "lucas@gmail.com",
+        dataInscricao: new Date(2023, 7, 8, 19, 23),
+        dataCheckIn: new Date(2023, 7, 9, 20, 20)
+      },
+      {
+        nome: "Paula Costa",
+        email: "paula@gmail.com",
+        dataInscricao: new Date(2023, 6, 9, 19, 23),
+        dataCheckIn: null
+      },
+      {
+        nome: "Gabriel Almeida",
+        email: "gabriel@gmail.com",
+        dataInscricao: new Date(2023, 5, 10, 19, 23),
+        dataCheckIn: new Date(2023, 5, 11, 20, 20)
+      }
 ];
 
-const criarNovoParticipantes = (participante) => {
-  const dataInscricao = dayjs(Date.now()).to
-  (participante.dataInscricao)
+const criarNovoParticipante = (participante) => {
+    const dataInscricao = dayjs(Date.now()).to(participante.dataInscricao)
+    let dataCheckIn = dayjs(Date.now()).to(participante.dataCheckIn)
 
-const dataCheckin = dayjs(Date.now()).to
-  (participante.dataCheckin)
-
-
-  return `<tr>
-      <td>
-        <strong>
-        ${participante.nome}
-        </strong>
-        <br>
-        <small>
-         ${participante.email}
-        </small>
-          </td>
-      <td>${dataInscricao}</td>
-      <td>${dataCheckin}</td>
+    if(participante.dataCheckIn == null) {
+        dataCheckIn = `
+        <button 
+        data-email="${participante.email}"
+        onclick="fazerCheckIn(event)"
+        >
+            Confirmar check-in
+        </button>
+        `
+    }
+    
+    return `
+    <tr>
+        <td>
+            <strong>
+            ${participante.nome}
+            </strong>
+            <br>
+            <small>
+             ${participante.email}
+            </small>
+        </td>
+        <td>${dataInscricao}</td>
+        <td>${dataCheckIn}</td>
     </tr>
     `
- 
+    
 }
+
 
 const atualizarLista = (participantes) => {
-  let output = ""
-  // estrutura de repetição - loop
-for(let participante of participantes) {
- output = output + criarNovoParticipantes(participante)
+    let output = ""
+    // estrutura de repetição - loop
+    for(let participante of participantes) {
+        output = output + criarNovoParticipante(participante)
+    }
+  
+
+    // substituir informação do HTML
+    document
+    .querySelector('tbody')
+    .innerHTML = output
+}
+  
+atualizarLista(participantes)
+
+const adicionarParticipante = (event) => {
+    event.preventDefault()
+
+    const formData = new FormData(event.target)
+
+    const participante = {
+        nome: formData.get('nome'),
+        email: formData.get('email'),
+        dataInscricao: new Date(), 
+        dataCheckIn: null
+    }
+
+    // verificar se o participante já existe
+    const participanteExiste = participantes.find(
+        (p) => p.email == participante.email   
+    )
+
+    if(participanteExiste) {
+        alert('Email já cadastrado!')
+        return
+    }
+
+    participantes = [participante, ...participantes]
+    atualizarLista(participantes)
+
+    // limpar o formulario
+    event.target.querySelector('[name="nome"]').value = ""
+    event.target.querySelector('[name="email"]').value = ""
+
 }
 
-  // substituir informação do HTML
-  document
-  .querySelector('tbody')
-  .innerHTML = output
+const fazerCheckIn = (event) => {
+    // confirmar se realmente quer o check-in
+    const mensagemConfirmacao = 'Tem certeza que deseja realizar o check-in?'
+    if(confirm(mensagemConfirmacao) == false){
+        return 
+    }
+
+    // encontrar o participante dentro da lista
+    const participante = participantes.find(
+        (p) => p.email == event.target.dataset.email 
+    )
+
+    // atualizar o check-in do participante
+    participante.dataCheckIn = new Date()
+
+    // atualizar a lista de participantes
+    atualizarLista(participantes)
+
 }
-atualizarLista(participantes)
